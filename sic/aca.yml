@@ -1,0 +1,50 @@
+version: 1.0.0
+info:
+  name: PORTAL
+  version: 1.0.0
+  code: '8888'
+  short-name: AGO
+  description: Agora - Portal
+  aci:
+    scm: https://gogs-aks.gencat.cat/aci/8888-portal-aci.git
+components:
+  - bake:
+      infrastructure:
+        type: iaas
+        provider: aws
+        scm: https://gogs-aks.gencat.cat/8888/ami-portal.git
+      image: gencatcloud/packer-baker:1.0
+      env:
+        - packer_conf_filename: "aws-portal.json"
+    deployment:
+      infrastructure:
+        type: iaas
+        provider: aws
+        scm: https://gogs-aks.gencat.cat/8888/infrastructure.git
+        images:
+          before-deploy:
+            image: 
+          deploy:
+            image: gencatcloud/terraform-provisioner:1.0
+          after-deploy:
+            image: 
+      environments:
+        - name: training
+          actions:
+            deploy:
+              env:
+                - value1: trn-value1
+        - name: preproduction
+          actions:
+            deploy:
+              env:
+                - value1: pre-value1
+        - name: production
+          actions:
+            deploy:
+              env:
+                - value1: pro-value1
+notifications:
+  email:
+    recipients:
+      - marc.peremiquel@ticxcat.cat

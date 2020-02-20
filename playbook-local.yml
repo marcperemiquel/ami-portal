@@ -1,0 +1,11 @@
+---
+
+- name: Local Apache playbook
+  hosts: local
+  connection: local
+  become: true
+  
+  roles:
+    - { role: common, tags: [common, portal] }
+    - { role: apache-php, tags: [common, portal] }
+    - { role: agora, tags: [common, portal] }
