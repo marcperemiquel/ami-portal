@@ -8,7 +8,13 @@ info:
   aci:
     scm: https://gogs-aks.gencat.cat/aci/8888-portal-aci.git
 components:
-  - bake:
+  - build:
+      image: slaves/npm-builder:1.0-10-6.4
+      commands:
+        - "npm version"
+      env:
+        - build_var1: "val1"
+    bake:
       infrastructure:
         type: iaas
         provider: aws
