@@ -19,7 +19,7 @@ components:
         type: iaas
         provider: aws
         scm: https://gogs-aks.gencat.cat/8888/ami-portal.git
-      image: gencatcloud/packer-baker:1.0
+      image: slaves/packer-baker:1.0
       env:
         - packer_conf_filename: "aws-portal.json"
     deployment:
