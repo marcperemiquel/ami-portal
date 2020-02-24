@@ -9,7 +9,7 @@ info:
     scm: https://gogs-aks.gencat.cat/aci/8888-portal-aci.git
 components:
   - build:
-      image: slaves/npm-builder:1.0-10-6.4
+      image: slaves/npm:1.0-10
       commands:
         - "npm version"
       env:
@@ -19,7 +19,7 @@ components:
         type: iaas
         provider: aws
         scm: https://gogs-aks.gencat.cat/8888/ami-portal.git
-      image: slaves/packer-baker:1.0
+      image: slaves/packer:1.0-1.5
       env:
         - packer_conf_filename: "aws-portal.json"
     deployment:
@@ -31,7 +31,7 @@ components:
           before-deploy:
             image: 
           deploy:
-            image: gencatcloud/terraform-provisioner:1.0
+            image: slaves/terraform:1.0-0.12
           after-deploy:
             image: 
       environments:
