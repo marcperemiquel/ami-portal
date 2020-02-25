@@ -18,7 +18,7 @@
       "ami_name": "ago-portal-ami-{{user `ami_version`}}",
       "tags": {
         "Name": "ago-portal-ami-{{user `ami_version`}}",
-        "CodiAplicacio": "8888",
+        "CodiAplicacio": "1051",
         "CodiEntitat": "ENS",
         "CodiInap": "XXX",
         "CodiServei": "7_888",
