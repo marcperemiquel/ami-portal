@@ -1,11 +1,12 @@
 ---
 
-- name: Local Apache playbook
+- name: Local Agora Portal playbook
   hosts: local
   connection: local
   become: true
-  
+
   roles:
-    - { role: common, tags: [common, portal] }
-    - { role: apache-php, tags: [common, portal] }
-    - { role: agora, tags: [common, portal] }
+    - common
+    - apache-php
+    - agora
+    - aws-configs
